@@ -49,7 +49,7 @@ function playAgain(){
 
 /* **** Event Listeners/Handlers ****  */
 $(document).ready(function(){
-    $('#submit').on('click', function(){
+    $('#submit').click( function(){
         playersGuessSubmission();
     })
 })
