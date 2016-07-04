@@ -28,8 +28,13 @@ function playersGuessSubmission(){
 // Determine if the next guess should be a lower or higher number
 
 function lowerOrHigher(){
-	// add code here
+    if (playersGuess < winningNumber){
+        return "lower"
+    } else {
+        return "higher"
+    }
 }
+    
 
 // Check if the Player's Guess is the winning number 
 
@@ -43,13 +48,24 @@ function checkGuess(){
         }   
         else {
         guessArr.push(playersGuess);
-        $('#message').text("Try Again!")
+        $("#message").text(guessMessage());
         }
     }
     }
     
 
-
+function guessMessage(){
+    var message = "Your guess is " + lowerOrHigher() + " than the winning number"
+  if(playersGuess > (winningNumber + 10) || playersGuess < (winningNumber - 10)){ 
+      return message +='.'
+  } else if (playersGuess > (winningNumber + 5) || playersGuess < (winningNumber - 5)){
+      return message +=" and you are within 10 digits.";
+  } else{
+      return message += " and you are within 5 digits.";
+  }
+                                                
+    
+};
 // Create a provide hint button that provides additional clues to the "Player"
 
 function provideHint(){
