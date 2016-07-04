@@ -3,6 +3,7 @@
 var winningNumber = generateWinningNumber();
 var playersGuess;
 var guessArr = [];
+var totalGuesses = 0;
 
 
 /* **** Guessing Game Functions **** */
@@ -47,8 +48,10 @@ function checkGuess(){
             $('#message').text("You submitted a duplicate number! Try Again");
         }   
         else {
+        totalGuesses ++;
         guessArr.push(playersGuess);
         $("#message").text(guessMessage());
+            
         }
     }
     }
@@ -69,7 +72,18 @@ function guessMessage(){
 // Create a provide hint button that provides additional clues to the "Player"
 
 function provideHint(){
-	// add code here
+	var threeNumbers = [];
+    var guessesLeft = 5;
+    threeNumbers.push(Math.floor(Math.random() * 100));
+    threeNumbers.push(winningNumber);
+    threeNumbers.push(Math.floor(Math.random() * 100));
+    if (totalGuesses <5){
+        guessesLeft -= totalGuesses;
+    } else{
+        guessesLeft = "no";
+    }
+    var hintMessage = "Your number is one of these 3: " + threeNumbers.join(', ') + " and you have " + guessesLeft +' guesses left.'
+    $("#hint").text(hintMessage);
 }
 
 // Allow the "Player" to Play Again
@@ -85,5 +99,8 @@ $(document).ready(function(){
         event.preventDefault();
         playersGuessSubmission();
     })
-    
+    $("#getHint").click( function(event){
+        event.preventDefault();
+        provideHint();
+    })
 })
