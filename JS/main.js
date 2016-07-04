@@ -18,7 +18,8 @@ function generateWinningNumber(){
 
 function playersGuessSubmission(){
 	// add code here
-    playersGuess = $('#guess').val();
+    playersGuess = Number($('#guess').val());
+    $('#guess').val('');
     
 }
 
@@ -49,7 +50,8 @@ function playAgain(){
 
 /* **** Event Listeners/Handlers ****  */
 $(document).ready(function(){
-    $('#submit').click( function(){
+    $('#submit').click( function(event){
+        event.preventDefault();
         playersGuessSubmission();
     })
 })
