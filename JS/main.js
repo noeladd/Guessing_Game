@@ -34,21 +34,21 @@ function lowerOrHigher(){
 // Check if the Player's Guess is the winning number 
 
 function checkGuess(){
-    for(var i = 0; i < guessArr.length; i++){
-        if(guessArr[i] == playersGuess){
-            $('#message').text("You submitted a duplicate number! Try Again");
-        }
-    }   
     if (winningNumber == playersGuess){
         $('#message').text("You Win!");
     }
     else {
+        if(guessArr.indexOf(playersGuess) != -1){
+            $('#message').text("You submitted a duplicate number! Try Again");
+        }   
+        else {
         guessArr.push(playersGuess);
         $('#message').text("Try Again!")
+        }
+    }
     }
     
-    
-}
+
 
 // Create a provide hint button that provides additional clues to the "Player"
 
