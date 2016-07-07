@@ -1,11 +1,11 @@
 body{
     font-family: 'Indie Flower', fantasy;
-    background-color: white;
-    color: crimson;
+    background-color: #EEEEEE;
+    color: #286090;
 }
 #title{
     text-align: center;
-    color: crimson;
+    
     
 }
 #form-div{
