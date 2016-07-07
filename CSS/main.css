@@ -1,10 +1,38 @@
+body{
+    font-family: 'Indie Flower', fantasy;
+    background-color: white;
+    color: crimson;
+}
 #title{
     text-align: center;
     color: crimson;
-    font-family: fantasy;
+    
 }
 #form-div{
     display: block;
     text-align: center;
     
+}
+
+p{
+
+}
+
+#result{
+    display: block;
+    text-align: center;
+    font-size: 40px;
+}
+
+.loser{
+    font-weight: bold;
+    font-size: 80px;
+    color: deeppink;
+    background-color: aquamarine;
+}
+
+.winner{
+    font-weight: bold;
+    font-size: 100px;
+    color: darkcyan;
 }
