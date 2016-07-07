@@ -1,6 +1,6 @@
-/* **** Global Variables **** */
-// try to elminate these global variables in your project, these are here just to start.
-var winningNumber = generateWinningNumber();
+(function(){/* **** Variables **** */
+
+var winningNumber= generateWinningNumber();
 var playersGuess;
 var guessArr = [];
 var totalGuesses = 0;
@@ -12,7 +12,7 @@ var totalGuesses = 0;
 
 function generateWinningNumber(){
 	// add code here
-    return Math.floor(Math.random() * 100);
+   return Math.floor(Math.random() * 100);
 }
 
 // Fetch the Players Guess
@@ -21,7 +21,12 @@ function playersGuessSubmission(){
 	// add code here
     playersGuess = Number($('#guess').val());
     $('#guess').val('');
+    if(totalGuesses < 5){
     checkGuess();
+    } else{
+        $('#message').text("You're out of guesses! You Lose!!!")
+        $("#message").addClass('loser');
+    }
     
     
 }
@@ -40,8 +45,13 @@ function lowerOrHigher(){
 // Check if the Player's Guess is the winning number 
 
 function checkGuess(){
+    if (playersGuess > 100 || playersGuess < 0){
+        $("#message").text("Invalid value, try a number between 0 and 100!");    
+    } 
+    else {
     if (winningNumber == playersGuess){
         $('#message').text("You Win!");
+        $('#message').addClass('winner')
     }
     else {
         if(guessArr.indexOf(playersGuess) != -1){
@@ -55,7 +65,7 @@ function checkGuess(){
         }
     }
     }
-    
+}
 
 function guessMessage(){
     var message = "Your guess is " + lowerOrHigher() + " than the winning number"
@@ -89,18 +99,23 @@ function provideHint(){
 // Allow the "Player" to Play Again
 
 function playAgain(){
-	// add code here
+    location.reload(true);
 }
-
 
 /* **** Event Listeners/Handlers ****  */
 $(document).ready(function(){
     $('#submit').click( function(event){
-        event.preventDefault();
         playersGuessSubmission();
     })
     $("#getHint").click( function(event){
-        event.preventDefault();
         provideHint();
     })
-})
+    $('#again').click(function(){
+        playAgain();
+    })
+    $('#guess').keyup(function(event){
+    if(event.keyCode == 13) {
+        $("#submit").click();
+    }
+});
+})})()
